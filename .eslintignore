@@ -1,0 +1,61 @@
+# Logs
+logs
+*.log
+
+# build
+build
+
+
+# Coverage directory used by tools like istanbul
+coverage
+
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/Release
+.eslintcache
+
+# Dependency directory
+# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
+node_modules
+
+# OSX
+.DS_Store
+
+# App packaged
+release
+dist
+dll
+main.js
+main.js.map
+
+.idea
+npm-debug.log.*
+__snapshots__
+
+# Package.json
+package.json
+.travis.yml
+*.css.d.ts
+*.sass.d.ts
+*.scss.d.ts
+
+# .d.ts
+/**/*.d.ts
+**/*.code.ts
+
+# mock
+mock
+
+# dist
+all/*
+
+# playground
+config
+
+tsconfig.json
+scripts
+
+example

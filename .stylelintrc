@@ -1,0 +1,6 @@
+{
+  "extends": ["@heibanfe/stylelint-config"],
+  "ignoreFiles": [
+    "all/**/*.less"
+  ]
+}

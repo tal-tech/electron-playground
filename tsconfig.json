@@ -1,0 +1,45 @@
+// https://www.typescriptlang.org/docs/handbook/tsconfig-json.html
+{
+  "compilerOptions": {
+    "skipLibCheck": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "jsx": "react",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "baseUrl": "./",
+    "inlineSources": true,
+    "noImplicitAny": true,
+    "outDir": "./lib",
+    "strict": true,
+    "importsNotUsedAsValues": "remove",
+    "paths": {
+      "*": ["node_modules/*"],
+      "app/*": ["app/*"],
+      "user-config/*": ["user-config/*"],
+      "resources/*": ["resources/*"],
+      "src/*": ["src/*"],
+      "common/*": ["common/*"],
+      "components/*": ["playground/components/*"],
+      "page/*": ["playground/page/*"],
+      "utils/*": ["playground/utils/*"],
+      "views/*": ["playground/views/*"],
+      "images/*": ["playground/images/*"]
+    },
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "allowJs": true
+  },
+  "include": ["app/**/*", "config/entry.dev.js", "playground/*"],
+  "exclude": [
+    "node_modules",
+    "packages",
+    "public",
+    "mock",
+    "app/js-sdk/dist",
+    "**/*.code.ts",
+    "example/*"
+  ]
+}

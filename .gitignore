@@ -1,0 +1,30 @@
+node_modules
+.DS_Store
+design
+*.log
+packages/test
+dist
+all
+temp
+.vuerc
+.version
+.idea
+.vscode/settings.json
+
+# dependencies
+/npm-debug.log*
+/yarn-error.log
+
+# production
+/dist
+
+
+# misc
+.DS_Store
+
+# release
+release
+*.tgz
+x-app-store
+
+xp-template/build
