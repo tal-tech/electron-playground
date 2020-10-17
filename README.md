@@ -65,4 +65,4 @@ yarn start
 
 当然如果有问题，可以加下面微信，有时间我们会第一时间回复。
 
-![](./resources/readme/wx01.jpeg)
+![](./resources/readme/wx01.png)
