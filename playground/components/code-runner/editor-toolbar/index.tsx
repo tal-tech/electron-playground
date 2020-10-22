@@ -2,7 +2,7 @@ import React, { useMemo, ReactElement, MouseEvent } from 'react'
 import { Button } from 'antd'
 import { CopyOutlined, CaretRightOutlined } from '@ant-design/icons'
 
-import { editorRelativePath } from 'utils/path'
+import { getSrcRelativePath } from 'utils/path'
 import styles from './style.module.less'
 
 const toolTypes = ['copy', 'run'] as const
@@ -40,7 +40,7 @@ const EditorToolbar: React.FunctionComponent<IEditorToolbarProps> = props => {
 
   const handleOpenEditor = (event: MouseEvent<HTMLElement>) => {
     event.preventDefault()
-    window.$EB.openWindow(editorRelativePath, { width: 1400, height: 800 })
+    window.$EB.openWindow('#/editor', { width: 1400, height: 800 })
   }
 
   return (

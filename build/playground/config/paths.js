@@ -62,6 +62,8 @@ module.exports = {
   yarnLockFile: resolveApp('yarn.lock'),
   testsSetup: resolveModule(resolveApp, 'playground/setupTests'),
   proxySetup: resolveApp('playground/setupProxy.js'),
+  fromExample: resolveApp('playground/example'),
+  toExample: resolveApp('dist/example'),
   appNodeModules: resolveApp('node_modules'),
   publicUrlOrPath,
   alias: {
