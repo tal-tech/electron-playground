@@ -3,6 +3,7 @@
 
 import { BaseOptions } from 'app/browser-window/options'
 import { BaseWebPreferences } from 'app/browser-window/web-preferences'
+import { PLAYGROUND_FILE_URL } from 'app/config'
 import { IpcMainEvent, ipcMain, BrowserWindowConstructorOptions, BrowserWindow } from 'electron'
 import util from 'util'
 
@@ -98,7 +99,7 @@ export function addCodeRunnerListener() {
       webPreferences: BaseWebPreferences,
       ...options,
     })
-    win.loadURL(url)
+    win.loadURL(PLAYGROUND_FILE_URL + url)
     event.returnValue = 1
   })
 }

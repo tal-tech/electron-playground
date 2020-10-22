@@ -4,8 +4,8 @@ import url from 'url'
 import { machineIdSync } from 'node-machine-id'
 
 let machineId = ''
-export const getMachineId = ()=> {
-  if(machineId){
+export const getMachineId = () => {
+  if (machineId) {
     return machineId
   }
   try {

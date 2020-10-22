@@ -1,8 +1,8 @@
 /* eslint-disable  no-await-in-loop, no-async-promise-executor,consistent-return,@typescript-eslint/no-inferrable-types */
 import { spawn, ChildProcess } from 'child_process'
-import { getSrcRelativePath } from 'utils/path'
 import { MosaicNode, MosaicDirection } from 'react-mosaic-component'
 import * as fs from 'fs-extra'
+import * as path from 'path'
 import { EditorId } from '.'
 
 export interface Files {
@@ -14,10 +14,14 @@ export interface Files {
 
 export { ChildProcess }
 
-export const SaveCodePath = './dist/tmp'
+const DIST_PATH = path.resolve(__dirname, '..', '..', '..', './dist')
+
+const ELECTRON_BIN_PATH = path.join('node_modules', '.bin', 'electron')
+
+export const SAVE_CODE_PATH = path.join(DIST_PATH, 'tmp')
 
 export const execute = (): ChildProcess => {
-  const child = spawn('node_modules/.bin/electron', [`${SaveCodePath}/main.js`, '--inspect'])
+  const child = spawn(ELECTRON_BIN_PATH, [path.join(SAVE_CODE_PATH, 'main.js'), '--inspect'])
   child.stdout.on('data', data => {
     console.log(`stdout: ${data}`)
   })
@@ -33,10 +37,10 @@ export const execute = (): ChildProcess => {
 }
 
 export const saveToTemp = async (values: Files) => {
-  await fs.emptyDir(SaveCodePath)
+  await fs.emptyDir(SAVE_CODE_PATH)
   for (const name in values) {
     // @ts-ignore
-    await fs.outputFile(`${SaveCodePath}/${name}`, values[name])
+    await fs.outputFile(path.join(SAVE_CODE_PATH, name), values[name])
   }
 }
 
@@ -45,7 +49,7 @@ export const getExamplePath = (
   type: string,
 ): string => {
   try {
-    return getSrcRelativePath(`./playground/example/${type}/${example}`)
+    return path.resolve(__dirname, '..', '..', '..', './dist', './example', `${type}/${example}`)
   } catch (error) {
     console.log(error)
     return ''
