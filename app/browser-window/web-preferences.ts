@@ -14,4 +14,5 @@ export const BaseWebPreferences: Electron.BrowserWindowConstructorOptions['webPr
   webSecurity: false,
   // 预加载脚本 通过绝对地址注入
   preload: path.resolve(__dirname, PRELOAD_FILE),
+  enableRemoteModule: true
 }
