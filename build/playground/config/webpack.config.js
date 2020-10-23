@@ -655,8 +655,8 @@ module.exports = function (webpackEnv) {
     // Some libraries import Node modules but don't use them in the browser.
     // Tell webpack to provide empty mocks for them so importing them works.
     node: {
-      __dirname: true,
-      __filename: true,
+      __dirname: false,
+      __filename: false,
     },
     // Turn off performance processing because we utilize
     // our own hints via the FileSizeReporter

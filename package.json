@@ -140,6 +140,7 @@
   "dependencies": {
     "@blueprintjs/core": "^3.32.1",
     "@blueprintjs/icons": "^3.21.0",
+    "@electron/get": "^1.12.2",
     "@sentry/electron": "^2.0.0",
     "antd": "^4.3.4",
     "autobind-decorator": "^2.4.0",
@@ -150,6 +151,7 @@
     "electron-log": "^4.2.2",
     "electron-store": "^6.0.0",
     "electron-updater": "^4.3.1",
+    "extract-zip": "^2.0.1",
     "github-markdown-css": "^4.0.0",
     "highlight.js": "^10.1.1",
     "log4js": "^6.3.0",

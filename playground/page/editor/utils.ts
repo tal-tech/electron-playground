@@ -1,7 +1,11 @@
 /* eslint-disable  no-await-in-loop, no-async-promise-executor,consistent-return,@typescript-eslint/no-inferrable-types */
 import { spawn, ChildProcess } from 'child_process'
+import { message } from 'antd'
+import { download } from '@electron/get'
+import { remote } from 'electron'
 import { MosaicNode, MosaicDirection } from 'react-mosaic-component'
 import * as fs from 'fs-extra'
+import extract from 'extract-zip'
 import * as path from 'path'
 import { EditorId } from '.'
 
@@ -12,16 +16,104 @@ export interface Files {
   'preload.js'?: string
 }
 
+const lock = true
 export { ChildProcess }
 
-const DIST_PATH = path.resolve(__dirname, '..', '..', '..', './dist')
+function getDownloadPath(version: string): string {
+  return path.join(remote.app.getPath('appData'), 'electron-bin', version)
+}
 
-const ELECTRON_BIN_PATH = path.join('node_modules', '.bin', 'electron')
+export function getElectronBinaryPath(
+  version: string,
+  dir: string = getDownloadPath(version),
+): string {
+  switch (process.platform) {
+    case 'darwin':
+      return path.join(dir, 'Electron.app/Contents/MacOS/Electron')
+    case 'freebsd':
+    case 'linux':
+      return path.join(dir, 'electron')
+    case 'win32':
+      return path.join(dir, 'electron.exe')
+    default:
+      throw new Error(
+        `Electron builds are not available for ${process.platform}`,
+      )
+  }
+}
+
+interface Progress {
+  percent: number;
+  transferred: number;
+  total: number;
+}
+
+export async function electronDownload(version: string) {
+  const getProgressCallback = (progress: Progress) => {
+    console.debug(
+      `Binary: Version ${version} download progress: ${progress.percent}`,
+    )
+  }
+  console.log('正在下载')
+  const zipFilePath = await download(version, {
+    downloadOptions: {
+      quiet: true,
+      getProgressCallback,
+    },
+  })
+
+  return zipFilePath
+}
+
+export async function getIsDownloaded(
+  version: string,
+  dir?: string,
+): Promise<boolean> {
+  const expectedPath = getElectronBinaryPath(version, dir)
+  return fs.existsSync(expectedPath)
+}
+
+function unzip(zipPath: string, extractPath: string): Promise<void> {
+  return new Promise(async (resolve, reject) => {
+    process.noAsar = true
+    const options = {
+      dir: extractPath,
+    }
+
+    try {
+      const file = await extract(zipPath, options)
+      resolve(file)
+    } catch (error) {
+      reject(error)
+    }
+
+  })
+}
+
+export async function setupBinary(): Promise<void> {
+  const version = process.versions.electron
+
+  await fs.mkdirp(getDownloadPath(version))
+  if (await getIsDownloaded(version)) {
+    return
+  }
+  const hide = message.loading(`正在下载${version}版本的Electron`)
+  const zipPath = await electronDownload(version)
+  const extractPath = getDownloadPath(version)
+
+  const electronFiles = await unzip(zipPath, extractPath)
+  hide()
+  message.success('下载成功')
+  console.log(`Unzipped ${version}`, electronFiles)
+}
+
+const DIST_PATH = path.resolve(__dirname, '..',)
 
 export const SAVE_CODE_PATH = path.join(DIST_PATH, 'tmp')
 
-export const execute = (): ChildProcess => {
-  const child = spawn(ELECTRON_BIN_PATH, [path.join(SAVE_CODE_PATH, 'main.js'), '--inspect'])
+export const execute = async (): Promise<ChildProcess | null> => {
+  await setupBinary()
+  const child = spawn(getElectronBinaryPath(process.versions.electron), [path.join(SAVE_CODE_PATH, 'main.js'), '--inspect'])
   child.stdout.on('data', data => {
     console.log(`stdout: ${data}`)
   })
@@ -49,7 +141,7 @@ export const getExamplePath = (
   type: string,
 ): string => {
   try {
-    return path.resolve(__dirname, '..', '..', '..', './dist', './example', `${type}/${example}`)
+    return path.resolve(__dirname, '..', 'example', type, example)
   } catch (error) {
     console.log(error)
     return ''
