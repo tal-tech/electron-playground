@@ -5,8 +5,6 @@
 appId: 'com.electron-playground'
 # 应用名称
 productName: 'electron-playground' # 应用名字
-# 版权信息
-copyright: Copyright © year xiaoheiban # 版权
 
 directories:
   # 构建资源文件目录，不会打包到app中，如果需要打包其中的一些文件比如托盘图标，需要在files字段中指定，比如 `"files": ["**/*", "build/icon.*"]`
