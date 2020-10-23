@@ -97,7 +97,7 @@ export async function setupBinary(): Promise<void> {
   if (await getIsDownloaded(version)) {
     return
   }
-  const hide = message.loading(`正在下载${version}版本的Electron`)
+  const hide = message.loading(`正在下载${version}版本的Electron`, 0)
   const zipPath = await electronDownload(version)
   const extractPath = getDownloadPath(version)
 

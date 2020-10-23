@@ -24,7 +24,7 @@ artifactName: ${productName}_${version}.${ext}
 files: 
   - dist
   - resources
-  - node_modules
+  - '!node_modules'
 # 是否打包成asar档案文件, https://www.electronjs.org/docs/tutorial/application-packaging
 asar: false
 
