@@ -16,7 +16,7 @@ export interface Files {
   'preload.js'?: string
 }
 
-const lock = true
+let lock = true
 export { ChildProcess }
 
 function getDownloadPath(version: string): string {
@@ -91,10 +91,13 @@ function unzip(zipPath: string, extractPath: string): Promise<void> {
 }
 
 export async function setupBinary(): Promise<void> {
+  if (!lock) return
+  lock = false
   const version = process.versions.electron
 
   await fs.mkdirp(getDownloadPath(version))
   if (await getIsDownloaded(version)) {
+    lock = true
     return
   }
   const hide = message.loading(`正在下载${version}版本的Electron`, 0)
@@ -104,6 +107,7 @@ export async function setupBinary(): Promise<void> {
   const electronFiles = await unzip(zipPath, extractPath)
   hide()
   message.success('下载成功')
+  lock = true
   console.log(`Unzipped ${version}`, electronFiles)
 }
 
