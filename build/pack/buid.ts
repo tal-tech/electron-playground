@@ -22,6 +22,7 @@ async function packTask(option: BuildOptions, platform: string) {
   }
   updateFillBuilderYAML(params)
 
+  process.env.NODE_ENV = 'production'
   // 编译主进程和渲染进程的文件到dist
   await execCommand(NPM_COMMAND, ['run', 'build'])
   // 打包对应平台的安装包
