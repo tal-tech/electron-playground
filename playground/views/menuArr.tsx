@@ -69,6 +69,12 @@ export default [
 
         path: '/application/tray',
       },
+      {
+        item: '文件管理器',
+        key: '文件管理器',
+
+        path: '/application/file-manager',
+      },
     ],
   },
   {

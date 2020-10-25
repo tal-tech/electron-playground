@@ -8,6 +8,7 @@ import { addCodeRunnerListener } from 'app/event/code-runner'
 import ProtocolService from 'app/protocol'
 import { setUpTray } from './tray'
 import { addDevToolsExtensionAtDevelopmentMode } from './browser-window/add-extensions'
+import { registerFileManagerService } from './file-manager'
 
 
 function run() {
@@ -27,8 +28,11 @@ function run() {
   app.on('ready', () => {
     ProtocolService.registerStringProtocol()
     addDevToolsExtensionAtDevelopmentMode()
-    getOrCreateMainWindow()
+
+    const win = getOrCreateMainWindow()
+
     setUpTray()
+    registerFileManagerService(win)
   })
 
   app.allowRendererProcessReuse = false
