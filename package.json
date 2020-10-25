@@ -62,6 +62,7 @@
     "@types/react-router-dom": "^5.1.5",
     "@types/react-syntax-highlighter": "^11.0.4",
     "@types/request": "^2.48.5",
+    "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "4.0.1",
     "@typescript-eslint/parser": "4.0.1",
     "autoprefixer": "^9.7.6",
@@ -169,6 +170,7 @@
     "react-mosaic-component": "^4.1.1",
     "react-router-dom": "^5.2.0",
     "react-syntax-highlighter": "^12.2.1",
+    "uuid": "^8.3.1",
     "yargs": "^15.4.1"
   },
   "lint-staged": {

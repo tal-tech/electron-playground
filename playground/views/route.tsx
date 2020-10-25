@@ -20,6 +20,7 @@ export default function () {
           <Route path="/application/dialog" component={lazy(() => import('../page/application/dialog'))} />
           <Route path="/application/menu" component={lazy(() => import('../page/application/menu'))} />
           <Route path="/application/tray" component={lazy(() => import('../page/application/tray'))} />
+          <Route path="/application/file-manager" component={lazy(() => import('../page/application/file-manager'))} />
           <Route path="/browser/window-operate" component={lazy(() => import('../page/browser/window-operate'))} />
           <Route path="/browser/awaken" component={lazy(() => import('../page/browser/awaken'))} />
           <Route path="/browser/focus-blur" component={lazy(() => import('../page/browser/focus-blur'))} />
@@ -38,10 +39,11 @@ export default function () {
           <Route path="/demo/window-type" component={lazy(() => import('../page/browser/demo/demo-window-type'))} />
           <Route path="/demo/full-screen" component={lazy(() => import('../page/browser/demo/full-screen'))} />
           <Route path="/editor" component={lazy(() => import('../page/editor'))} />
+          <Route path="/download-manager/demo" component={lazy(() => import('../page/application/file-manager/download/demo'))} />
         </Switch>
       </Suspense>
     </>
   );
 }
 
-export const isolatedRoutes = ['/demo/communication-part1/client', '/demo/communication-part1/main', '/demo/communication-part2/client', '/demo/communication-part2/main', '/demo/communication-part3/client', '/demo/communication-part3/main', '/browser/demo/window-close', '/demo/window-type', '/demo/full-screen', '/editor'];
+export const isolatedRoutes = ['/demo/communication-part1/client', '/demo/communication-part1/main', '/demo/communication-part2/client', '/demo/communication-part2/main', '/demo/communication-part3/client', '/demo/communication-part3/main', '/browser/demo/window-close', '/demo/window-type', '/demo/full-screen', '/editor', '/download-manager/demo'];
