@@ -8,6 +8,7 @@ export default function Communication(): ReactElement {
 
   useEffect(() => {
     document.title = '子窗口'
+    // eslint-disable-next-line jsx-control-statements/jsx-jcs-no-undef
     let timer: NodeJS.Timeout
 
     if (num > 0) {

@@ -11,6 +11,7 @@ const BaseWebPreferences: Electron.BrowserWindowConstructorOptions['webPreferenc
   nodeIntegration: true,
   webSecurity: false,
   preload: path.resolve(__dirname, PRELOAD_FILE),
+  enableRemoteModule:true,
 }
 
 
@@ -23,6 +24,7 @@ browserWindow.webContents.on('new-window', (event, url, frameName, disposition) 
       webPreferences: {
         ...BaseWebPreferences,
         additionalArguments:[`--parentWindow=${browserWindow.id}`] // 把父窗口的id传过去
+        enableRemoteModule:true
       } 
     });
     win.loadURl(url);
@@ -56,6 +58,7 @@ const BaseWebPreferences = {
   // webSecurity: false,
   // 预加载脚本 通过绝对地址注入
   preload: path.resolve(__dirname, './communication1.js'),
+  enableRemoteModule:true
 }
 
 // 主窗口代码
@@ -84,11 +87,61 @@ parent.webContents.on('new-window', (event, url, frameName, disposition) => {
 __其余代码如下__:
 主窗口代码
 ```javascript
-// @@code-path: ./playground/page/browser/demo/communication-part1/main.tsx
+import React, { ReactElement, useEffect } from 'react'
+import style from '../style.module.less'
+
+export default function Communication(): ReactElement {
+  useEffect(() => {
+    document.title = '父窗口'
+  }, [])
+
+  return (
+    <div className={style.wrap}>
+      <a href='http://www.github.com' target='__blank'>
+        通过a标签target=__blank打开新的窗口
+      </a>
+      <div
+        onClick={() => {
+          window.open('http://www.github.com')
+        }}>
+        通过window.open打开新的窗口
+      </div>
+    </div>
+  )
+}
+
 ```
 子窗口代码
 ```javascript
-// @@code-path: ./playground/page/browser/demo/communication-part1/client.tsx
+import React, { ReactElement, useEffect, useState } from 'react'
+import style from '../style.module.less'
+
+const COUNT_NUM = 5
+
+export default function Communication(): ReactElement {
+  const [num, setNum] = useState(COUNT_NUM)
+
+  useEffect(() => {
+    document.title = '子窗口'
+    let timer: NodeJS.Timeout
+
+    if (num > 0) {
+      timer = setTimeout(() => {
+        setNum(num - 1)
+      }, 1000)
+    } else {
+      // @ts-ignore
+      window.send('hello')
+      window.close()
+    }
+    return () => {
+      timer && clearTimeout(timer)
+    }
+  }, [num])
+
+  return <div className={style.countDown}>子窗口 {num} 秒之后，请看主窗口</div>
+}
+
 ```
 
 
@@ -128,6 +181,7 @@ const BaseWebPreferences = {
   // webSecurity: false,
   // 预加载脚本 通过绝对地址注入
   preload: path.resolve(__dirname, './communication2.js'),
+  enableRemoteModule:true
 }
 
 // 主窗口代码
@@ -158,11 +212,61 @@ __其余代码如下__:
 
 主窗口代码
 ```javascript
-// @@code-path: ./playground/page/browser/demo/communication-part2/main.tsx
+import React, { ReactElement, useEffect } from 'react'
+import style from '../style.module.less'
+
+export default function Communication(): ReactElement {
+
+  useEffect(() => {
+    document.title = '父窗口'
+  }, [])
+
+  return (
+    <div className={style.wrap}>
+      <a href='http://www.github.com' target='__blank'>
+        通过a标签target=__blank打开新的窗口
+      </a>
+      <div
+        onClick={() => {
+          window.open('http://www.github.com')
+        }}>
+        通过window.open打开新的窗口
+      </div>
+    </div>
+  )
+}
 ```
 子窗口代码
 ```javascript
-// @@code-path: ./playground/page/browser/demo/communication-part2/client.tsx
+import React, { ReactElement, useEffect, useState } from 'react'
+import style from '../style.module.less'
+
+const COUNT_NUM = 5
+
+export default function Communication(): ReactElement {
+  const [num, setNum] = useState(COUNT_NUM)
+
+  useEffect(() => {
+    document.title = '子窗口'
+    let timer: NodeJS.Timeout
+
+    if (num > 0) {
+      timer = setTimeout(() => {
+        setNum(num - 1)
+      }, 1000)
+    } else {
+      // @ts-ignore
+      window.sendToParent('hello')
+      window.close()
+    }
+    return () => {
+      timer && clearTimeout(timer)
+    }
+  }, [num])
+
+  return <div className={style.countDown}>子窗口 {num} 秒之后，请看主窗口</div>
+}
+
 ```
 
 ### 1.3. 使用`window.open`
