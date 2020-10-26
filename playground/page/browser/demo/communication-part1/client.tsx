@@ -8,10 +8,10 @@ export default function Communication(): ReactElement {
 
   useEffect(() => {
     document.title = '子窗口'
-    let timer: window.Timeout
+    let timer: number
 
     if (num > 0) {
-      timer = setTimeout(() => {
+      timer = window.setTimeout(() => {
         setNum(num - 1)
       }, 1000)
     } else {
@@ -20,7 +20,7 @@ export default function Communication(): ReactElement {
       window.close()
     }
     return () => {
-      timer && clearTimeout(timer)
+      timer && window.clearTimeout(timer)
     }
   }, [num])
 
