@@ -31,7 +31,10 @@ function __createBrowserWindow(
 }
 
 export function createBrowserWindow(url: string, options: WindowOptionType = {}) {
-  const loadUrl = PLAYGROUND_FILE_URL
+  let loadUrl = `${PLAYGROUND_FILE_URL}#${url ?? '/'}`
+  if (/^http(s)|file/.test(url)) {
+    loadUrl = url
+  }
 
   const browserWindow = __createBrowserWindow(
     loadUrl,

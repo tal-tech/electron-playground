@@ -2,7 +2,7 @@ import { app, BrowserWindow, session, dialog, WebContents, DownloadItem } from '
 
 import { createBrowserWindow } from '../../browser-window'
 import { IDownloadFile, INewDownloadFile, IPagination } from '../interface'
-import { getFileName, isExistFile, openFileFolder, pathJoin, removeFile, uuidV4 } from '../util'
+import { getFileName, isExistFile, openFile, openFileInFolder, pathJoin, removeFile, uuidV4 } from '../util'
 import { ipcMainHandle } from '../ipc-main'
 import {
   addDownloadItem,
@@ -302,10 +302,13 @@ const listenerEvent = () => {
   ipcMainHandle('retryDownloadFile', (event, data: IDownloadFile) => retryDownloadFile(data))
 
   // 选择保存位置对话框
-  ipcMainHandle('openFileDialog', async (event, oldPath?: string) => openFileDialog(oldPath))
+  ipcMainHandle('openFileDialog', (event, oldPath?: string) => openFileDialog(oldPath))
+
+  // 打开文件
+  ipcMainHandle('openFile', (event, path: string) => openFile(path))
 
   // 打开文件所在路径
-  ipcMainHandle('openFileInFolder', (event, path: string) => openFileFolder(path))
+  ipcMainHandle('openFileInFolder', (event, path: string) => openFileInFolder(path))
 
   // 暂停或恢复下载
   ipcMainHandle('pauseOrResume', (event, item: IDownloadFile) => pauseOrResume(item))

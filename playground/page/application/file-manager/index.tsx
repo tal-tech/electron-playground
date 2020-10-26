@@ -4,7 +4,7 @@ import { Button } from 'antd'
 import Markdown from '../../../components/markdown'
 
 import { openDownloadManager } from './ipc-renderer'
-// import DocDownload from './download/markdown/index.md'
+import DocDownload from './download/markdown/index.md'
 
 const DownloadHome = () => {
   const handleOpenDownloadManager = () => {
@@ -18,7 +18,7 @@ const DownloadHome = () => {
       <p>
         <Button type='primary' onClick={handleOpenDownloadManager}>打开下载管理器</Button>
       </p>
-      {/* <Markdown content={DocDownload} /> */}
+      <Markdown content={DocDownload} />
     </div>
   )
 }

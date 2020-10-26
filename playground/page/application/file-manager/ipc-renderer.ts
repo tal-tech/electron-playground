@@ -1,4 +1,4 @@
-import { ipcRenderer, IpcRendererEvent, remote, shell } from 'electron'
+import { ipcRenderer, IpcRendererEvent, remote } from 'electron'
 import {
   IDownloadFile,
   INewDownloadFile,
@@ -38,7 +38,7 @@ export const getDownloadPath = (): string => remote.app.getPath('downloads')
  * 打开文件
  * @param path - 路径
  */
-export const openFile = (path: string): Promise<string> => shell.openPath(path)
+export const openFile = (path: string): Promise<string> => ipcRendererInvoke('openFile', path)
 
 /**
  * 打开下载管理器
