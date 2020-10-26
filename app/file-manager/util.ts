@@ -68,10 +68,21 @@ export const removeFile = (path: string): void => {
 }
 
 /**
+ * 打开文件
+ * @param path - 文件路径
+ */
+export const openFile = (path: string): boolean => {
+  if (!isExistFile(path)) return false
+
+  shell.openPath(path)
+  return true
+}
+
+/**
  * 打开文件所在位置
  * @param path - 文件路径
  */
-export const openFileFolder = (path: string): boolean => {
+export const openFileInFolder = (path: string): boolean => {
   if (!isExistFile(path)) return false
 
   shell.showItemInFolder(path)

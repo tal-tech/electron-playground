@@ -70,8 +70,8 @@ export default [
         path: '/application/tray',
       },
       {
-        item: '文件管理器',
-        key: '文件管理器',
+        item: '下载管理器',
+        key: '下载管理器',
 
         path: '/application/file-manager',
       },

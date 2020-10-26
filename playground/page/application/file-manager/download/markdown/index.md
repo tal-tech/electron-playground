@@ -60,16 +60,22 @@ const progress = item.getReceivedBytes() / item.getTotalBytes()
 ![下载进度](./download_progress.png)
 
 在下载的时候，想在 Mac 系统的程序坞和 Windows 系统的任务栏展示下载信息，比如：
- - 下载数：通过 app 的 badgeCount 属性设置，当为 0 时，不会显示。也可以通过 dock 的 setBadge 方法设置，该方法支持的是字符串，如果不要显示，需要设置为''。
+ - 下载数：通过 app 的 badgeCount 属性设置，当为 0 时，不会显示。也可以通过 dock 的 setBadge 方法设置，该方法支持的是字符串，如果不要显示，需要设置为 ''。
  - 下载进度：通过窗口的 setProgressBar 方法设置。
 
-> 由于 Mac 和 Windows 系统差异，下载数仅在 Mac 系统中生效。
+> 由于 Mac 和 Windows 系统差异，下载数仅在 Mac 系统中生效。加上 process.platform === 'darwin' 条件，避免在非 Mac 系统下出现异常错误。
 
 ![mac 程序坞](./mac_download_progress.png)
 
 ![windows 进度](./windows_progress.png)
 
 ```js
+// mac 程序坞显示下载数：
+
+// 方式一
+app.badgeCount = 1
+
+// 方式二
 app.dock.setBadge('1')
 ```
 

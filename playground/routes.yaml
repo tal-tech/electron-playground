@@ -28,7 +28,7 @@
       src: application/menu
     - name: 系统托盘
       src: application/tray
-    - name: 文件管理器
+    - name: 下载管理器
       src: application/file-manager
 
 - name: 窗口管理

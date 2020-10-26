@@ -88,8 +88,8 @@ const DownloadManager = () => {
   }
 
   // 双击图标打开文件
-  const handleOpenFile = (path: string) => {
-    const res = openFile(path)
+  const handleOpenFile = async (path: string) => {
+    const res = await openFile(path)
 
     if (!res) {
       message.error('文件不存在')
