@@ -43,11 +43,13 @@ const EXTENSION_FOLDER = (function extensionFolder() {
   if (existsSync(folderPath)) {
     return folderPath
   } else {
-    throw new Error('no extension folder')
+    console.error('no extension folder')
+    return ''
   }
 })()
 
 function addDevToolsExtension(id: string) {
+  if(!EXTENSION_FOLDER) return
   const extensionPath = path.resolve(EXTENSION_FOLDER, id)
 
   if (!existsSync(extensionPath)) {
