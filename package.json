@@ -16,7 +16,7 @@
   },
   "scripts": {
     "start": "npm run build && electron .",
-    "clean": "rm -rf dist",
+    "clean": "rimraf dist/**",
     "route": "node build/playground/scripts/genRouter.js",
     "dev": "npm run clean && cross-env NODE_ENV=development concurrently \"npm run dev:main\" \"npm run dev:preload\" \"npm run dev:playground\"",
     "dev:main": "webpack --config ./build/webpack.config.main.dev.js --watch",
@@ -81,6 +81,7 @@
     "copy-webpack-plugin": "^6.2.1",
     "cross-env": "^7.0.2",
     "css-loader": "3.4.2",
+    "del": "^6.0.0",
     "dotenv": "8.2.0",
     "dotenv-expand": "5.1.0",
     "dotenv-webpack": "^2.0.0",
