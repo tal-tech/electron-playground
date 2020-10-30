@@ -1,3 +1,4 @@
+文件下载是我们开发中比较常见的业务需求，比如：导出 excel。web 里面下载文件有很多的局限性，通常是让后端将响应的头信息修改成 `Content-Disposition: attachment; filename=`。
 在 electron 端的下载行为，都会触发 session 的 [will-download](https://www.electronjs.org/docs/api/session#instance-events) 事件。
 
 在该事件里面可以获取到 [downloadItem](https://www.electronjs.org/docs/api/download-item) 对象，通过 [downloadItem](https://www.electronjs.org/docs/api/download-item) 对象可以实现：
@@ -11,11 +12,11 @@
 
 ![效果图](./demo.gif)
   
-### 新建下载流程图
+## 新建下载流程图
 
 ![流程图](./flow_chart.png)
 
-### 触发下载
+## 触发下载
 
 由于 electron 是基于 chromium 实现的，通过调用 webContents 的 [downloadURL](https://www.electronjs.org/docs/api/web-contents#contentsdownloadurlurl) 方法，相当于调用了 chromium 底层实现的下载，会忽略响应头信息，触发 [will-download](https://www.electronjs.org/docs/api/session#instance-events) 事件。
 
@@ -27,7 +28,7 @@ win.webContents.downloadURL(url)
 session.defaultSession.on('will-download', (event, item, webContents) => {})
 ```
 
-### 设置保存路径
+## 设置保存路径
 
 如果没有设置保存路径，electron 会自动弹出系统的保存对话框。不想使用系统的保存对话框，可以使用 [setSavePath](https://www.electronjs.org/docs/api/download-item#downloaditemsetsavepathpath) 方法，当有重名文件时，会直接覆盖下载。
 
@@ -47,6 +48,9 @@ const { canceled, filePaths } = await dialog.showOpenDialog({
   defaultPath: oldPath || app.getPath('downloads')
 })
 ```
+
+## 功能实现
+
 
 ### 暂停/恢复和取消
 
