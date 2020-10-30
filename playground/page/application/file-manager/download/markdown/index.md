@@ -1,22 +1,12 @@
-文件下载是我们开发中比较常见的业务需求，比如：导出 excel。web 里面下载文件有很多的局限性，通常是让后端将响应的头信息修改成 `Content-Disposition: attachment; filename=`。
-在 electron 端的下载行为，都会触发 session 的 [will-download](https://www.electronjs.org/docs/api/session#instance-events) 事件。
+文件下载是我们开发中比较常见的业务需求，比如：导出 excel。
 
-在该事件里面可以获取到 [downloadItem](https://www.electronjs.org/docs/api/download-item) 对象，通过 [downloadItem](https://www.electronjs.org/docs/api/download-item) 对象可以实现：
+web 应用下载文件存在一些局限性，通常是让后端将响应的头信息改成 `Content-Disposition: attachment; filename=xxx.pdf`，触发浏览器的下载行为。
 
-- 设置保存路径
-- 下载进度、速度
-- 用户行为，比如暂停、恢复下载等
-- 保存下载记录
-
-下图是实现一个简单的下载管理器：
+在 electron 中的下载行为，都会触发 session 的 [will-download](https://www.electronjs.org/docs/api/session#instance-events) 事件。在该事件里面可以获取到 [downloadItem](https://www.electronjs.org/docs/api/download-item) 对象，通过 [downloadItem](https://www.electronjs.org/docs/api/download-item) 对象实现一个简单的文件下载管理器：
 
 ![效果图](./demo.gif)
-  
-## 新建下载流程图
 
-![流程图](./flow_chart.png)
-
-## 触发下载
+## 如何触发下载
 
 由于 electron 是基于 chromium 实现的，通过调用 webContents 的 [downloadURL](https://www.electronjs.org/docs/api/web-contents#contentsdownloadurlurl) 方法，相当于调用了 chromium 底层实现的下载，会忽略响应头信息，触发 [will-download](https://www.electronjs.org/docs/api/session#instance-events) 事件。
 
@@ -27,8 +17,25 @@ win.webContents.downloadURL(url)
 // 监听 will-download
 session.defaultSession.on('will-download', (event, item, webContents) => {})
 ```
+  
+## 下载流程图
 
-## 设置保存路径
+![流程图](./flow_chart.png)
+
+## 功能设计
+
+在上面的效果图中，实现的简单的文件下载管理器功能包含：
+
+- 设置保存路径
+- 暂停/恢复和取消
+- 下载进度
+- 下载速度
+- 下载完成
+- 打开文件和打开文件所在位置
+- 文件图标
+- 下载记录
+
+### 设置保存路径
 
 如果没有设置保存路径，electron 会自动弹出系统的保存对话框。不想使用系统的保存对话框，可以使用 [setSavePath](https://www.electronjs.org/docs/api/download-item#downloaditemsetsavepathpath) 方法，当有重名文件时，会直接覆盖下载。
 
@@ -48,9 +55,6 @@ const { canceled, filePaths } = await dialog.showOpenDialog({
   defaultPath: oldPath || app.getPath('downloads')
 })
 ```
-
-## 功能实现
-
 
 ### 暂停/恢复和取消
 
@@ -75,9 +79,9 @@ const progress = item.getReceivedBytes() / item.getTotalBytes()
 
 下载进度（Windows 系统任务栏、Mac 系统程序坞）显示效果：
 
-![mac 程序坞](./mac_download_progress.png)
-
 ![windows 进度](./windows_progress.png)
+
+![mac 程序坞](./mac_download_progress.png)
 
 ```js
 // mac 程序坞显示下载数：
@@ -110,7 +114,7 @@ item.on('updated', (e, state) => {
 
 ### 下载完成
 
-在 [downloadItem](https://www.electronjs.org/docs/api/download-item) 中监听 done 事件，处理已完成、中断和取消下载项，通知到渲染进程更新 UI 状态。
+当一个文件下载完成、中断或者被取消，需要通知渲染进程修改状态，通过监听 [downloadItem](https://www.electronjs.org/docs/api/download-item) 的 done 事件。
 
 ```js
 item.on('done', (e, state) => {
@@ -118,18 +122,6 @@ item.on('done', (e, state) => {
   downloadItem.receivedBytes = item.getReceivedBytes()
   downloadItem.lastModifiedTime = item.getLastModifiedTime()
 
-  if (state !== 'cancelled') {
-    downloadCompletedIds.push(downloadItem.id)
-  }
-
-  // 更新任务栏
-  setTaskbar()
-  // 下载成功，在 mac 系统会有弹跳效果
-  if (state === 'completed' && process.platform === 'darwin') {
-    app.dock.downloadFinished(downloadItem.path)
-  }
-
-  setDownloadStore(downloadItemData)
   // 通知渲染进程，更新下载状态
   webContents.send('downloadItemDone', downloadItem)
 })
@@ -178,4 +170,4 @@ const getFileIcon = async (path: string) => {
 
 ### 下载记录
 
-在 [will-download](https://www.electronjs.org/docs/api/session#instance-events) 事件里，使用 [electron-store](https://github.com/sindresorhus/electron-store) 将下载记录保存在本地。
+保存下载记录到本地，随着下载的历史数据越来越多，使用 [electron-store](https://github.com/sindresorhus/electron-store) 将下载记录保存在本地。
