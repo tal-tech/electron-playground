@@ -1,6 +1,6 @@
 文件下载是我们开发中比较常见的业务需求，比如：导出 excel。
 
-web 应用下载文件存在一些局限性，通常是让后端将响应的头信息改成 `Content-Disposition: attachment; filename=xxx.pdf`，触发浏览器的下载行为。
+web 应用文件下载存在一些局限性，通常是让后端将响应的头信息改成 `Content-Disposition: attachment; filename=xxx.pdf`，触发浏览器的下载行为。
 
 在 electron 中的下载行为，都会触发 session 的 [will-download](https://www.electronjs.org/docs/api/session#instance-events) 事件。在该事件里面可以获取到 [downloadItem](https://www.electronjs.org/docs/api/download-item) 对象，通过 [downloadItem](https://www.electronjs.org/docs/api/download-item) 对象实现一个简单的文件下载管理器：
 
@@ -24,7 +24,7 @@ session.defaultSession.on('will-download', (event, item, webContents) => {})
 
 ## 功能设计
 
-在上面的效果图中，实现的简单的文件下载管理器功能包含：
+在上面的效果图中，实现的简单文件下载管理器功能包含：
 
 - 设置保存路径
 - 暂停/恢复和取消
@@ -43,22 +43,43 @@ session.defaultSession.on('will-download', (event, item, webContents) => {})
 item.setSavePath(path)
 ```
 
-为了更好的用户体验，需要实现修改保存路径的功能。当点击位置输入框时，渲染进程通过 ipc 与主进程通信，打开系统文件选择对话框。
+为了更好的用户体验，可以让用户自己选择保存位置操作。当点击位置输入框时，渲染进程通过 ipc 与主进程通信，打开系统文件选择对话框。
 
-![新建下载](./new_download.png)
+![选择保存位置](./select_path.gif)
+
+主进程实现代码：
+
+```ts
+/**
+ * 打开文件选择框
+ * @param oldPath - 上一次打开的路径
+ */
+const openFileDialog = async (oldPath: string = app.getPath('downloads')) => {
+  if (!win) return oldPath
+
+  const { canceled, filePaths } = await dialog.showOpenDialog(win, {
+    title: '选择保存位置',
+    properties: ['openDirectory', 'createDirectory'],
+    defaultPath: oldPath,
+  })
+
+  return !canceled ? filePaths[0] : oldPath
+}
+
+ipcMain.handle('openFileDialog', (event, oldPath?: string) => openFileDialog(oldPath))
+```
+
+渲染进程代码：
 
 ```js
-// 打开系统文件选择对话框
-const { canceled, filePaths } = await dialog.showOpenDialog({
-  title: '选择保存位置',
-  properties: ['openDirectory', 'createDirectory'],
-  defaultPath: oldPath || app.getPath('downloads')
-})
+const path = await ipcRenderer.invoke('openFileDialog', 'PATH')
+
+console.log(path)
 ```
 
 ### 暂停/恢复和取消
 
-拿到 [downloadItem](https://www.electronjs.org/docs/api/download-item) 后，暂停、恢复和取消分别调用 pause、resume 和 cancel 方法。当我们要删除列表中正在下载的项，需要先调用 cancel 方法取消下载。
+拿到 [downloadItem](https://www.electronjs.org/docs/api/download-item) 后，暂停、恢复和取消分别调用 `pause`、`resume` 和 `cancel` 方法。当我们要删除列表中正在下载的项，需要先调用 cancel 方法取消下载。
 
 ### 下载进度
 
@@ -98,7 +119,7 @@ win.setProgressBar(progress)
 
 由于 [downloadItem](https://www.electronjs.org/docs/api/download-item) 没有直接为我们提供方法或属性获取下载速度，需要自己实现。
 
-其实思路很简单：在 updated 事件里通过 getReceivedBytes 方法拿到本次下载的字节数据减去上一次下载的字节数据。
+> 思路：在 updated 事件里通过 getReceivedBytes 方法拿到本次下载的字节数据减去上一次下载的字节数据。
 
 ```js
 // 记录上一次下载的字节数据
@@ -129,7 +150,9 @@ item.on('done', (e, state) => {
 
 ### 打开文件和打开文件所在位置
 
-使用 electron 的 shell 模块来实现打开文件（[openPath](https://www.electronjs.org/docs/api/shell#shellopenpathpath)）和打开文件所在位置（[showItemInFolder](https://www.electronjs.org/docs/api/shell#shellshowiteminfolderfullpath)）。由于 openPath 方法支持返回值 `Promise<string>`，当不支持打开的文件，系统会有相应的提示，而 showItemInFolder 方法返回值是 `void`。如果需要更好的用户体验，可使用 nodejs 的 fs 模块，先检查文件是否存在。
+使用 electron 的 shell 模块来实现打开文件（[openPath](https://www.electronjs.org/docs/api/shell#shellopenpathpath)）和打开文件所在位置（[showItemInFolder](https://www.electronjs.org/docs/api/shell#shellshowiteminfolderfullpath)）。
+
+> 由于 openPath 方法支持返回值 `Promise<string>`，当不支持打开的文件，系统会有相应的提示，而 showItemInFolder 方法返回值是 `void`。如果需要更好的用户体验，可使用 nodejs 的 fs 模块，先检查文件是否存在。
 
 ```ts
 import fs from 'fs'
@@ -170,4 +193,4 @@ const getFileIcon = async (path: string) => {
 
 ### 下载记录
 
-保存下载记录到本地，随着下载的历史数据越来越多，使用 [electron-store](https://github.com/sindresorhus/electron-store) 将下载记录保存在本地。
+随着下载的历史数据越来越多，使用 [electron-store](https://github.com/sindresorhus/electron-store) 将下载记录保存在本地。
