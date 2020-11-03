@@ -1,6 +1,6 @@
 # Electron Playground 
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/tal-tech/electron-playground/blob/master/license.md)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/tal-tech/electron-playground/blob/master/.github/PULL_REQUEST_TEMPLATE.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/tal-tech/electron-playground/pulls)
 
 ## 1. electron-playground介绍
 
