@@ -66,4 +66,4 @@ yarn start
 
 当然如果有问题，可以加下面微信，有时间我们会第一时间回复。
 
-<img src="https://raw.githubusercontent.com/tal-tech/electron-playground/master/resources/readme/wx02.png" alt="wechat" width="300" />
+<img src="https://raw.githubusercontent.com/tal-tech/electron-playground/master/resources/readme/wechat-group.jpeg" alt="wechat-group" width="300" />
