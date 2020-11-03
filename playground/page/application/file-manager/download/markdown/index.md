@@ -133,6 +133,9 @@ item.on('updated', (e, state) => {
 })
 ```
 
+> 需要注意的是，updated 事件执行的时间约 500ms 一次。
+
+![updated_event](./updated_event.png)
 ### 下载完成
 
 当一个文件下载完成、中断或者被取消，需要通知渲染进程修改状态，通过监听 [downloadItem](https://www.electronjs.org/docs/api/download-item) 的 done 事件。

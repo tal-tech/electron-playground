@@ -2,7 +2,15 @@ import { app, BrowserWindow, session, dialog, WebContents, DownloadItem } from '
 
 import { createBrowserWindow } from '../../browser-window'
 import { IDownloadFile, INewDownloadFile, IPagination } from '../interface'
-import { getFileName, isExistFile, openFile, openFileInFolder, pathJoin, removeFile, uuidV4 } from '../util'
+import {
+  getFileName,
+  isExistFile,
+  openFile,
+  openFileInFolder,
+  pathJoin,
+  removeFile,
+  uuidV4,
+} from '../util'
 import { ipcMainHandle } from '../ipc-main'
 import {
   addDownloadItem,
@@ -97,7 +105,7 @@ export const listenerDownload = async (
   setTaskbar(downloadItemData, downloadCompletedIds, -1, win)
 
   // 新下载任务创建完成，渲染进程监听该事件，添加到下载管理器列表
-  webContents.send('newDownloadItem', {...downloadItem, _sourceItem: null})
+  webContents.send('newDownloadItem', { ...downloadItem, _sourceItem: null })
 
   // 更新下载
   item.on('updated', (e, state) => {
@@ -115,7 +123,7 @@ export const listenerDownload = async (
     // 更新任务栏进度
     win?.setProgressBar(bytes.receivedBytes / bytes.totalBytes)
     // 通知渲染进程，更新下载状态
-    webContents.send('downloadItemUpdate', {...downloadItem, _sourceItem: null})
+    webContents.send('downloadItemUpdate', { ...downloadItem, _sourceItem: null })
   })
 
   // 下载完成
@@ -135,7 +143,7 @@ export const listenerDownload = async (
 
     setDownloadStore(downloadItemData)
     // 通知渲染进程，更新下载状态
-    webContents.send('downloadItemDone', {...downloadItem, _sourceItem: null})
+    webContents.send('downloadItemDone', { ...downloadItem, _sourceItem: null })
   })
 }
 
@@ -215,7 +223,7 @@ const downloadFile = (newItem: INewDownloadFile) => {
   // 判断是否存在
   if (isExistFile(downloadPath)) {
     const id = existItem?.id || uuidV4()
-    return {id, ...newItem}
+    return { id, ...newItem }
   }
 
   if (existItem) {
