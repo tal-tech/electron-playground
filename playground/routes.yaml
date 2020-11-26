@@ -95,3 +95,6 @@
   src: application/file-manager/download/demo
   path: download-manager/demo
 
+- isolated: true
+  src: start
+  path: start

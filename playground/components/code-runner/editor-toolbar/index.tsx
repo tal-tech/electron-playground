@@ -40,7 +40,8 @@ const EditorToolbar: React.FunctionComponent<IEditorToolbarProps> = props => {
 
   const handleOpenEditor = (event: MouseEvent<HTMLElement>) => {
     event.preventDefault()
-    window.$EB.openWindow('#/editor', { width: 1400, height: 800 })
+
+    window.$EB.openWindow('editor')
   }
 
   return (

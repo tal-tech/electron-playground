@@ -1,8 +1,7 @@
 /* eslint-disable no-new-func */
 /* eslint-disable no-var */
 
-import { BaseOptions } from 'app/browser-window/options'
-import { BaseWebPreferences } from 'app/browser-window/web-preferences'
+import { createWindow, WindowName } from 'app/browser-window'
 import { PLAYGROUND_FILE_URL } from 'app/config'
 import { IpcMainEvent, ipcMain, BrowserWindowConstructorOptions, BrowserWindow } from 'electron'
 import util from 'util'
@@ -19,8 +18,7 @@ export interface LogItem {
 }
 
 export interface OpenWindowOptions {
-  url: string
-  options: BrowserWindowConstructorOptions
+  name: WindowName
 }
 
 // 拦截运行时的log
@@ -93,13 +91,9 @@ export function addCodeRunnerListener() {
   })
 
   ipcMain.on('OPEN_WINDOW', (event: IpcMainEvent, optionsProps: OpenWindowOptions) => {
-    const { url, options } = optionsProps
-    const win = new BrowserWindow({
-      ...BaseOptions,
-      webPreferences: BaseWebPreferences,
-      ...options,
-    })
-    win.loadURL(PLAYGROUND_FILE_URL + url)
+    const { name } = optionsProps
+    createWindow(name)
+
     event.returnValue = 1
   })
 }

@@ -40,10 +40,11 @@ export default function () {
           <Route path="/demo/full-screen" component={lazy(() => import('../page/browser/demo/full-screen'))} />
           <Route path="/editor" component={lazy(() => import('../page/editor'))} />
           <Route path="/download-manager/demo" component={lazy(() => import('../page/application/file-manager/download/demo'))} />
+          <Route path="/start" component={lazy(() => import('../page/start'))} />
         </Switch>
       </Suspense>
     </>
   );
 }
 
-export const isolatedRoutes = ['/demo/communication-part1/client', '/demo/communication-part1/main', '/demo/communication-part2/client', '/demo/communication-part2/main', '/demo/communication-part3/client', '/demo/communication-part3/main', '/browser/demo/window-close', '/demo/window-type', '/demo/full-screen', '/editor', '/download-manager/demo'];
+export const isolatedRoutes = ['/demo/communication-part1/client', '/demo/communication-part1/main', '/demo/communication-part2/client', '/demo/communication-part2/main', '/demo/communication-part3/client', '/demo/communication-part3/main', '/browser/demo/window-close', '/demo/window-type', '/demo/full-screen', '/editor', '/download-manager/demo', '/start'];

@@ -3,9 +3,11 @@ import { BrowserWindow } from 'electron'
 import { CreateWindowHandler } from '..'
 
 const OPTIONS: Electron.BrowserWindowConstructorOptions = {
-  width: 480,
-  height: 320,
-  resizable: false,
+  width: 960,
+  height: 640,
+  minWidth: 960,
+  minHeight: 640,
+  fullscreen: true,
   titleBarStyle: 'hidden',
   autoHideMenuBar: true,
   webPreferences: {
@@ -16,9 +18,9 @@ const OPTIONS: Electron.BrowserWindowConstructorOptions = {
   }
 }
 
-const URL = `${PLAYGROUND_FILE_URL}#start`
+const URL = `${PLAYGROUND_FILE_URL}#/editor`
 
-export const createStartWindow: CreateWindowHandler = () => {
+export const createEditorWindow: CreateWindowHandler = () => {
   const win = new BrowserWindow(OPTIONS)
   win.loadURL(URL)
 

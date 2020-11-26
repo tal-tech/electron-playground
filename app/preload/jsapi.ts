@@ -1,3 +1,4 @@
+import { WindowName } from 'app/browser-window'
 import { ipcRenderer, BrowserWindowConstructorOptions } from 'electron'
 
 // 执行electron代码
@@ -7,8 +8,8 @@ function actionCode(fnStr: string) {
 }
 
 // 打开新的窗口
-function openWindow(url: string, options: BrowserWindowConstructorOptions) {
-  const result = ipcRenderer.send('OPEN_WINDOW', { url, options })
+function openWindow(name: WindowName) {
+  const result = ipcRenderer.send('OPEN_WINDOW', { name })
   return result
 }
 
