@@ -2,13 +2,14 @@
 import { app } from 'electron'
 import 'app/collect/sentry'
 
-import { getOrCreateMainWindow, restoreMainWindow, closeMainWindow } from 'app/browser-window'
+import { restoreMainWindow, closeMainWindow } from 'app/browser-window'
 import { startUpdaterSchedule } from 'app/updater'
 import { addCodeRunnerListener } from 'app/event/code-runner'
 import ProtocolService from 'app/protocol'
 import { setUpTray } from './tray'
-import { addDevToolsExtensionAtDevelopmentMode } from './browser-window/add-extensions'
-import { registerFileManagerService } from './file-manager'
+import { addDevToolsExtensionAtDevelopmentMode } from 'app/chrome-extensions'
+import { setupMenu } from './menu'
+import { createWindow } from './browser-window'
 
 
 function run() {
@@ -29,10 +30,10 @@ function run() {
     ProtocolService.registerStringProtocol()
     addDevToolsExtensionAtDevelopmentMode()
 
-    const win = getOrCreateMainWindow()
+    const win = createWindow('start')
 
+    setupMenu()
     setUpTray()
-    registerFileManagerService(win)
   })
 
   app.allowRendererProcessReuse = false

@@ -1,6 +1,6 @@
 import path from 'path'
 import { readdirSync, existsSync } from 'fs'
-import { BrowserWindow, app } from 'electron'
+import { app, session } from 'electron'
 
 const EXTENSION_FOLDER = (function extensionFolder() {
   const { platform } = process
@@ -61,7 +61,7 @@ function addDevToolsExtension(id: string) {
   )
 
   if (versionName) {
-    BrowserWindow.addDevToolsExtension?.(path.resolve(extensionPath, versionName))
+    session.defaultSession.loadExtension(path.resolve(extensionPath, versionName))
   }
 }
 
