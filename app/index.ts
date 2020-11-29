@@ -2,7 +2,7 @@
 import { app } from 'electron'
 import 'app/collect/sentry'
 
-import { restoreMainWindow, closeMainWindow } from 'app/browser-window'
+import { closeMainWindow, restoreMainWindow } from 'app/browser-window'
 import { startUpdaterSchedule } from 'app/updater'
 import { addCodeRunnerListener } from 'app/event/code-runner'
 import ProtocolService from 'app/protocol'
@@ -59,5 +59,7 @@ function run() {
     restoreMainWindow()
   })
 }
+
+
 
 run()

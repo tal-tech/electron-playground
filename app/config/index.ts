@@ -24,4 +24,4 @@ export const PLAYGROUND_FILE_URL = url.format({
   slashes: true,
 })
 
-export const PRELOAD_FILE = './preload.js'
+export const PRELOAD_FILE = path.resolve(__dirname, 'preload.js')

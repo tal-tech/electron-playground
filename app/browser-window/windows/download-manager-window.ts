@@ -4,12 +4,12 @@ import { BrowserWindow, shell } from 'electron'
 import { CreateWindowHandler } from '..'
 
 const OPTIONS: Electron.BrowserWindowConstructorOptions = {
-  width: 1280,
-  height: 900,
-  minWidth: 960,
-  minHeight: 640,
+  title: '下载管理器',
+  width: 600,
+  height: 400,
   titleBarStyle: 'hidden',
-  autoHideMenuBar: true,
+  maximizable: false,
+  show: false,
   webPreferences: {
     nodeIntegration: true,
     webSecurity: false,
@@ -18,9 +18,9 @@ const OPTIONS: Electron.BrowserWindowConstructorOptions = {
   }
 }
 
-const URL = `${PLAYGROUND_FILE_URL}#/`
+const URL = `${PLAYGROUND_FILE_URL}#/download-manager/demo`
 
-export const createApiWindow: CreateWindowHandler = () => {
+export const createDownloadManagerWindow: CreateWindowHandler = () => {
   const win = new BrowserWindow(OPTIONS)
   win.loadURL(URL)
 
@@ -30,8 +30,6 @@ export const createApiWindow: CreateWindowHandler = () => {
       shell.openExternal(url)
     }
   })
-
-  registerFileManagerService(win)
 
   return win
 }

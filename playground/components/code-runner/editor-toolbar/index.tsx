@@ -47,10 +47,6 @@ const EditorToolbar: React.FunctionComponent<IEditorToolbarProps> = props => {
   return (
     <div className={styles.container} style={style}>
       <div className={styles.btn}>{ToolItems}</div>
-      {/* TODO: 后续添加完整例子，将从这进入编辑器 */}
-      <Button size='small' type='link' onClick={handleOpenEditor}>
-        去演练场试试
-      </Button>
     </div>
   )
 }
