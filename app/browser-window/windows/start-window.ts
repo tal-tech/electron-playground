@@ -3,17 +3,18 @@ import { BrowserWindow } from 'electron'
 import { CreateWindowHandler } from '..'
 
 const OPTIONS: Electron.BrowserWindowConstructorOptions = {
-  width: 480,
-  height: 320,
+  width: 600,
+  height: 640,
   resizable: false,
   titleBarStyle: 'hidden',
   autoHideMenuBar: true,
+  frame: false,
   webPreferences: {
     nodeIntegration: true,
     webSecurity: false,
     preload: PRELOAD_FILE,
     enableRemoteModule: true,
-  }
+  },
 }
 
 const URL = `${PLAYGROUND_FILE_URL}#start`

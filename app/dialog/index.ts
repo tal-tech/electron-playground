@@ -1,5 +1,4 @@
 import { dialog, BrowserWindow } from 'electron'
-import { getOrCreateMainWindow } from 'app/browser-window/index'
 
 function createMessageBoxShow(type: NonNullable<Electron.MessageBoxOptions['type']>) {
   // 这里将window参数反置，因为一般情况下其实不会用到window参数，这里参考了vscode的做法
@@ -21,14 +20,4 @@ export const messageBox = {
   error: createMessageBoxShow('error'),
   question: createMessageBoxShow('question'),
   warning: createMessageBoxShow('warning')
-}
-
-export function showDialog(
-  type: Electron.MessageBoxOptions['type'],
-  args: Electron.MessageBoxOptions
-) {
-  return dialog.showMessageBox(getOrCreateMainWindow(), {
-    type,
-    ...args
-  })
 }

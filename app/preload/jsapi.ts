@@ -13,11 +13,29 @@ function openWindow(name: WindowName) {
   return result
 }
 
+function closeWindow(name?: WindowName) {
+  const result = ipcRenderer.send('CLOSE_WINDOW', name)
+  return result
+}
+
+function maximizeWindow(name?: WindowName) {
+  const result = ipcRenderer.send('MAXIMIZE_WINDOW', name)
+  return result
+}
+
+function minimizeWindow(name?: WindowName) {
+  const result = ipcRenderer.send('MINIMIZE_WINDOW', name)
+  return result
+}
+
 export function initJSAPI() {
   window.$EB = {
     ipcRenderer,
     actionCode,
     openWindow,
+    closeWindow,
+    maximizeWindow,
+    minimizeWindow,
     crash: process.crash,
   }
 }

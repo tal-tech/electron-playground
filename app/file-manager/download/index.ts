@@ -1,6 +1,6 @@
 import { app, BrowserWindow, session, dialog, WebContents, DownloadItem } from 'electron'
 
-import { createBrowserWindow } from '../../browser-window'
+import { createWindow } from '../../browser-window'
 import { IDownloadFile, INewDownloadFile, IPagination } from '../interface'
 import {
   getFileName,
@@ -43,14 +43,7 @@ const openDownloadManager = (url: string) => {
     return
   }
 
-  win = createBrowserWindow(url, {
-    title: '下载管理器',
-    width: 600,
-    height: 400,
-    titleBarStyle: 'hidden',
-    maximizable: false,
-    show: false,
-  })
+  win = createWindow('download-manager')
 
   win.on('ready-to-show', () => {
     win?.show()

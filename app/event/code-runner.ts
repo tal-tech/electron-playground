@@ -17,10 +17,6 @@ export interface LogItem {
   content: string
 }
 
-export interface OpenWindowOptions {
-  name: WindowName
-}
-
 // 拦截运行时的log
 class MockConsole {
   private _logs: { type: LogType; content: string }[] = []
@@ -88,12 +84,5 @@ export function addCodeRunnerListener() {
     } catch (err) {
       console.log('执行动态代码错误', err)
     }
-  })
-
-  ipcMain.on('OPEN_WINDOW', (event: IpcMainEvent, optionsProps: OpenWindowOptions) => {
-    const { name } = optionsProps
-    createWindow(name)
-
-    event.returnValue = 1
   })
 }

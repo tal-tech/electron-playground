@@ -3,11 +3,10 @@ import { BrowserWindow } from 'electron'
 import { CreateWindowHandler } from '..'
 
 const OPTIONS: Electron.BrowserWindowConstructorOptions = {
-  width: 960,
-  height: 640,
+  width: 1280,
+  height: 900,
   minWidth: 960,
   minHeight: 640,
-  fullscreen: true,
   titleBarStyle: 'hidden',
   autoHideMenuBar: true,
   webPreferences: {
