@@ -21,6 +21,9 @@ const URL = `${PLAYGROUND_FILE_URL}#start`
 
 export const createStartWindow: CreateWindowHandler = () => {
   const win = new BrowserWindow(OPTIONS)
+  // 隐藏Mac下的交通灯🚥和windows/linux下的菜单操作按钮
+  if (process.platform === 'darwin') win.setWindowButtonVisibility(false)
+  else win.setMenuBarVisibility(false)
   win.loadURL(URL)
 
   return win
