@@ -20,12 +20,25 @@ const HandlersMap: { [key in WindowName]: CreateWindowHandler } = {
   api: createApiWindow,
   editor: createEditorWindow,
   start: createStartWindow,
-  'download-manager': createDownloadManagerWindow
+  'download-manager': createDownloadManagerWindow,
 }
 Object.freeze(HandlersMap)
+let CLOSE_WINDOW = false
 
 // browserWindow store
 const WindowMap = new Map<WindowName, BrowserWindow>()
+
+function hackFakeCloseMainWindow(win: BrowserWindow) {
+  win.on('close', event => {
+    if (CLOSE_WINDOW) return
+    event.preventDefault()
+    if (win.isFullScreen()) {
+      win.setFullScreen(false)
+    } else {
+      win.hide()
+    }
+  })
+}
 
 // create window by name
 export function createWindow(name: WindowName, options?: CreateWindowOptions): BrowserWindow {
@@ -53,6 +66,7 @@ export function createWindow(name: WindowName, options?: CreateWindowOptions): B
     logger[arr[level] || 'log'](message)
   })
 
+  hackFakeCloseMainWindow(win)
   return win
 }
 
@@ -68,10 +82,12 @@ export function restoreMainWindow() {
 
 export function closeMainWindow() {
   const win = WindowMap.get('start') || WindowMap.get('api') || WindowMap.get('editor')
+  CLOSE_WINDOW = true
   win?.close()
+  CLOSE_WINDOW = false
 }
 
-(async ()=>{
+;(async () => {
   await app.whenReady()
   ipcMain.on('OPEN_WINDOW', (event: IpcMainEvent, optionsProps: OpenWindowOptions) => {
     const { name } = optionsProps
@@ -85,13 +101,13 @@ export function closeMainWindow() {
     win?.close()
   })
 
-  ipcMain.on('MAXIMIZE_WINDOW', (e,options)=>{
+  ipcMain.on('MAXIMIZE_WINDOW', (e, options) => {
     const win = BrowserWindow.fromWebContents(e.sender)
     console.log(win?.isMaximized())
     win?.isMaximized() ? win?.unmaximize() : win?.maximize()
   })
 
-  ipcMain.on('MINIMIZE_WINDOW', (e,options)=>{
+  ipcMain.on('MINIMIZE_WINDOW', (e, options) => {
     const win = BrowserWindow.fromWebContents(e.sender)
     win?.isMinimized() ? win?.restore() : win?.minimize()
   })
