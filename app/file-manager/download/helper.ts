@@ -203,7 +203,7 @@ export const initDownloadData = (): IDownloadFile[] => {
  * 移除下载数据中的 _sourceItem 属性
  * @param data - 下载数据
  */
-export const deleteSoureceItem = (data: IDownloadFile[]): IDownloadFile[] => {
+export const deleteSourceItem = (data: IDownloadFile[]): IDownloadFile[] => {
   data = data.map(item => ({...item, _sourceItem: undefined}))
   return data
 }
@@ -218,7 +218,7 @@ export const getDownloadData = (
   data: IDownloadFile[],
   { pageIndex = 1, pageCount = 10 }: IPagination,
 ): IDownloadFile[] => {
-  data = deleteSoureceItem(data)
+  data = deleteSourceItem(data)
 
   const query = (pageIndex - 1) * pageCount
   const newData =
