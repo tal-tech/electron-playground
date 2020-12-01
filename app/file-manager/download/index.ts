@@ -14,7 +14,7 @@ import {
 import { ipcMainHandle } from '../ipc-main'
 import {
   addDownloadItem,
-  deleteSoureceItem,
+  deleteSourceItem,
   download,
   getDownloadBytes,
   getDownloadData,
@@ -65,9 +65,6 @@ const openDownloadManager = (url: string) => {
     downloadItemData = []
     downloadCompletedIds = []
     setTaskbar(downloadItemData, downloadCompletedIds, -1, win)
-  })
-
-  win.on('closed', () => {
     win = null
   })
 }
@@ -280,7 +277,7 @@ const clearDownloadDone = () => {
 
   downloadCompletedIds = []
   setDownloadStore(downloadItemData)
-  return deleteSoureceItem(downloadItemData)
+  return deleteSourceItem(downloadItemData)
 }
 
 // 添加主进程 ipc 调用事件
