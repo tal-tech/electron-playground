@@ -39,7 +39,7 @@ const tempDownloadItemIds: string[] = [] // 下载中的 id
  */
 const openDownloadManager = (url: string) => {
   if (win) {
-    win.focus()
+    win.show()
     return
   }
 
