@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react'
-import { Form, Input, Modal } from 'antd'
+import { Form, Input, message, Modal } from 'antd'
 import { EllipsisOutlined } from '@ant-design/icons'
 
 import {
@@ -39,6 +39,11 @@ const CreateModal = ({ show, onClose }: CreateModalProps) => {
 
   // 下载开始
   const handleOk = async () => {
+    if (!/^(http(s?)|ftp|blob):|data:.*;base64/.test(formData.url)) {
+      message.error('下载地址只支持 http、ftp、base64、blob 协议')
+      return
+    }
+
     const item = await newDownloadFile(formData)
     if (!item) return
 
@@ -104,6 +109,7 @@ const CreateModal = ({ show, onClose }: CreateModalProps) => {
       <Form labelCol={{ span: 3 }}>
         <Form.Item label='地址：'>
           <Input
+            placeholder='支持 http、ftp、base64、blob 协议'
             value={formData?.url}
             onChange={e => handleFormChange('url', e.target.value)}
             onFocus={handleFocus}
@@ -112,7 +118,7 @@ const CreateModal = ({ show, onClose }: CreateModalProps) => {
         <Form.Item label='文件名：'>
           <Input
             value={formData?.fileName}
-            onChange={e => handleFormChange('filename', e.target.value)}
+            onChange={e => handleFormChange('fileName', e.target.value)}
             onFocus={handleFocus}
           />
         </Form.Item>
