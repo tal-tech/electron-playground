@@ -50,7 +50,6 @@
     "@heibanfe/eslint-config-react": "^1.1.4",
     "@heibanfe/stylelint-config": "^1.1.0",
     "@svgr/webpack": "4.3.3",
-    "@types/autobind-decorator": "^2.1.0",
     "@types/dotenv-webpack": "^1.8.0",
     "@types/inquirer": "^7.3.0",
     "@types/jest": "^24.0.0",
