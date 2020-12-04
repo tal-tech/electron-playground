@@ -12,7 +12,7 @@
 // @@code-props: { hideRight: true, height:'100px' }
 const { BrowserWindow } = require('electron')
 let win = new BrowserWindow({ width: 800, height: 600, frame: false })
-win.show()
+win.loadURL('https://www.github.com')
 ```
 在`macOS`下，还有不同的实现方式，[完整文档](https://www.electronjs.org/docs/api/frameless-window#macos-%E4%B8%8A%E7%9A%84%E5%85%B6%E4%BB%96%E6%96%B9%E6%A1%88)
 
@@ -28,7 +28,7 @@ win.show()
 // 创建一个无边框的窗口
 const { BrowserWindow } = require('electron')
 let win = new BrowserWindow({ titleBarStyle: 'hidden' })
-win.show()
+win.loadURL('https://www.github.com')
 ```
 效果如下：  
 <img src="../../resources/markdown/window-type-frame.gif" alt="window-type-frame">
@@ -42,7 +42,7 @@ win.show()
 // 创建一个无边框的窗口
 const { BrowserWindow } = require('electron')
 let win = new BrowserWindow({ titleBarStyle: 'hiddenInset' })
-win.show()
+win.loadURL('https://www.github.com')
 ```
 效果如下：  
 <img src="../../resources/markdown/window-type-frame2.gif" alt="window-type-frame2">
