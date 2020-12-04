@@ -81,9 +81,10 @@ export function restoreMainWindow() {
 }
 
 export function closeMainWindow() {
-  const win = WindowMap.get('start') || WindowMap.get('api') || WindowMap.get('editor')
   CLOSE_WINDOW = true
-  win?.close()
+  for (const win of WindowMap) {
+    win[1].close()
+  }
   CLOSE_WINDOW = false
 }
 
