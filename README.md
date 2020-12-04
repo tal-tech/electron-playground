@@ -2,6 +2,8 @@
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/tal-tech/electron-playground/blob/master/license.md)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/tal-tech/electron-playground/pulls)
 
+如果想快速的把一个web app应用打包成一个electron应用，那我们还准备了[create-electron-app](https://github.com/tal-tech/create-electron-app),这个项目可以让你五分钟就拥有自己的electron app
+
 ## 1. electron-playground介绍
 
 一个快速尝试和学习[electron](https://github.com/electron/electron)的项目，对electron的api进行了归纳和总结，对常用的业务功能做了demo演示。
