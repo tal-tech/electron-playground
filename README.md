@@ -70,4 +70,4 @@ yarn start
 
 当然如果有问题，可以加下面微信，有时间我们会第一时间回复。
 
-![wechat-group](./resources/readme/wechat-group.jpeg)
+<img src="./resources/readme/wechat-group.jpeg" width="300px">
