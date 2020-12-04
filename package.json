@@ -1,6 +1,6 @@
 {
   "name": "electron-playground",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "This is a project to quickly experiment and learn electron related APIs",
   "main": "dist/main/index.js",
   "author": {
