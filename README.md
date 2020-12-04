@@ -70,4 +70,4 @@ yarn start
 
 当然如果有问题，可以加下面微信，有时间我们会第一时间回复。
 
-<img src="https://pro-image.xiaoheiban.cn/202012/4695352a-dd1d-406c-9103-c417b42999cc.jpg?x-oss-process=image/resize,w_700" />
+![wechat-group](./resources/readme/wechat-group.jpeg)
