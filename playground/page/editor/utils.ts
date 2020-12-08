@@ -60,6 +60,9 @@ export async function electronDownload(version: string) {
       quiet: true,
       getProgressCallback,
     },
+    mirrorOptions:{
+      mirror:'https://npm.taobao.org/mirrors/electron/'
+    }
   })
 
   return zipFilePath
