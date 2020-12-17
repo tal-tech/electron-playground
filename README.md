@@ -70,4 +70,4 @@ yarn start
 
 当然如果有问题，可以加下面微信，有时间我们会第一时间回复。
 
-<img src="https://pro-image.xiaoheiban.cn/202012/e1ba0936-4b02-4177-b93d-a2dc7943fda9.jpg" width="300px">
+<img src="https://pro-image.xiaoheiban.cn/202012/91c672c2-8cc3-4837-8925-d2c02ca6d2d6.jpg" width="300px">
