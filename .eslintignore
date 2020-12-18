@@ -5,7 +5,6 @@ logs
 # build
 build
 
-
 # Coverage directory used by tools like istanbul
 coverage
 
@@ -27,6 +26,7 @@ node_modules
 # App packaged
 release
 dist
+latest-output
 dll
 main.js
 main.js.map

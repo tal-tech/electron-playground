@@ -15,7 +15,7 @@
     "serverPort": "2333"
   },
   "scripts": {
-    "start": "npm run build && electron .",
+    "start": "ts-node ./build/quick-start.ts && electron .",
     "clean": "rimraf dist/**",
     "route": "node build/playground/scripts/genRouter.js",
     "dev": "npm run clean && cross-env NODE_ENV=development concurrently \"npm run dev:main\" \"npm run dev:preload\" \"npm run dev:playground\"",
