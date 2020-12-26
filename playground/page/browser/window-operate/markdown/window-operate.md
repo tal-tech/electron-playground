@@ -199,3 +199,18 @@ browserWindows.loadURL('file:///' + path.resolve(__dirname, '../playground/index
 - 窗口在被创建之后，窗口实例各种 __事件触发顺序__ 可参见 [窗口触发顺序](./index.html#/browser/window-event)章节；
 - __窗口通信__，可参见 [窗口通信](./index.html#/browser/communication)章节；
 - __无边框窗口__、__父子窗口__、__模态窗口__，参见[窗口类型](./index.html#/browser/window-type)章节；
+
+
+## 创建窗口的方式：
+### 主进程 `new BrowserWindow(option)`
+介绍：
+代码实现：
+
+### 渲染进程 `remote.BrowserWindow方式`
+
+### 渲染进程 `window.open`
+
+### 渲染进程 <a href="#" target="__blank"></a>
+
+
+## 如何管理创建出的窗口
