@@ -1,7 +1,3 @@
-import TestComp from './test-comp'
-
-<TestComp />
-
 # 对话框
 
 显示系统对话框, 提供了消息提示、消息提示操作以及选择文件、保存文件等操作.
