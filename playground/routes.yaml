@@ -98,3 +98,7 @@
 - isolated: true
   src: start
   path: start
+
+- isolated: true
+  src: apidoc
+  path: apidoc

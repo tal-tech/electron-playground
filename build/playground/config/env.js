@@ -3,6 +3,9 @@
 const fs = require('fs');
 const path = require('path');
 const paths = require('./paths');
+const menus = require('./api-menus')
+
+console.log(menus)
 
 // Make sure that including paths.js after env.js will read .env variables.
 delete require.cache[require.resolve('./paths')];
@@ -69,6 +72,7 @@ function getClientEnvironment(publicUrl) {
         return env;
       },
       {
+        API_MENUS: menus,
         // Useful for determining whether we’re running in production mode.
         // Most importantly, it switches React into the correct mode.
         NODE_ENV: process.env.NODE_ENV || 'development',
