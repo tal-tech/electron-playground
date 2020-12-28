@@ -1,0 +1,33 @@
+.container{
+  padding: 20px; 
+  background-color: white;
+  height: 100vh;
+}
+
+.footer{
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  border-top: 1px solid #e3e3e3;
+  button{
+    margin-left: 10px;
+  }
+}
+
+.message-box{
+  border: 1px solid #c3c3c3;
+  border-radius: 4px;
+  .box-title{
+    padding: 2px 8px;
+    background-color: #c3c3c3;
+    color: #000;
+  }
+  .box-content{
+    padding: 4px 8px;
+    overflow-y: auto;
+    height: calc(~"100vh - 200px");
+  }
+}

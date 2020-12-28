@@ -1,0 +1,77 @@
+.menu-container {
+  border-bottom: 1px solid #eee;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+.download-item-container {
+  padding: 10px 15px;
+  position: relative;
+  -webkit-app-region: no-drag;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #eee;
+  }
+
+  .download-item-progress {
+    background-color: #e6f7ff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    max-width: 100%;
+    height: 100%;
+    transition: width linear 0.3s;
+  }
+
+  .download-item-main {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .file-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .file-info {
+    flex: 1;
+    padding: 0 10px;
+    overflow: hidden;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .file-name {
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .file-desc {
+    color: #999;
+    display: flex;
+    font-size: 14px;
+
+    .file-size {
+      flex: 1;
+    }
+
+    .download-speed {
+      flex: 1;
+    }
+  }
+
+  .operating {
+    .operating-item {
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+  }
+}

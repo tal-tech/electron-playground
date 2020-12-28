@@ -1,0 +1,27 @@
+.container {
+  background-color: #fff;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  -webkit-app-region: drag;
+
+  a,
+  button,
+  p,
+  label,
+  span,
+  input {
+    -webkit-app-region: no-drag;
+  }
+
+  .title {
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .main {
+    overflow-y: auto;
+    flex: 1;
+  }
+}
