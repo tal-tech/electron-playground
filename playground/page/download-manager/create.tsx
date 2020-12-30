@@ -7,8 +7,8 @@ import {
   getDownloadPath,
   newDownloadFile,
   openFileDialog,
-} from '../../ipc-renderer'
-import { INewDownloadFile } from '../../../../../../app/file-manager/interface'
+} from './ipc-renderer'
+import { INewDownloadFile } from '../../../app/file-manager/interface'
 
 interface CreateModalProps {
   show: boolean

@@ -8,7 +8,7 @@ import {
 } from '@ant-design/icons'
 
 import IconButton from './icon-button'
-import { IDownloadFile } from '../../../../../app/file-manager/interface'
+import { IDownloadFile } from '../../../../app/file-manager/interface'
 
 import styles from './style.module.less'
 
