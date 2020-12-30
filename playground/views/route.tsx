@@ -29,15 +29,15 @@ export default function () {
           <Route path="/browser/window-type" component={lazy(() => import('../page/browser/window-type'))} />
           <Route path="/browser/window-event" component={lazy(() => import('../page/browser/window-event'))} />
           <Route path="/others/security" component={lazy(() => import('../page/others/security'))} />
-          <Route path="/demo/communication-part1/client" component={lazy(() => import('../page/browser/demo/communication-part1/client'))} />
-          <Route path="/demo/communication-part1/main" component={lazy(() => import('../page/browser/demo/communication-part1/main'))} />
-          <Route path="/demo/communication-part2/client" component={lazy(() => import('../page/browser/demo/communication-part2/client'))} />
-          <Route path="/demo/communication-part2/main" component={lazy(() => import('../page/browser/demo/communication-part2/main'))} />
-          <Route path="/demo/communication-part3/client" component={lazy(() => import('../page/browser/demo/communication-part3/client'))} />
-          <Route path="/demo/communication-part3/main" component={lazy(() => import('../page/browser/demo/communication-part3/main'))} />
-          <Route path="/browser/demo/window-close" component={lazy(() => import('../page/browser/demo/window-close'))} />
-          <Route path="/demo/window-type" component={lazy(() => import('../page/browser/demo/demo-window-type'))} />
-          <Route path="/demo/full-screen" component={lazy(() => import('../page/browser/demo/full-screen'))} />
+          <Route path="/demo/communication-part1/client" component={lazy(() => import('../page/browser-demo/communication-part1/client'))} />
+          <Route path="/demo/communication-part1/main" component={lazy(() => import('../page/browser-demo/communication-part1/main'))} />
+          <Route path="/demo/communication-part2/client" component={lazy(() => import('../page/browser-demo/communication-part2/client'))} />
+          <Route path="/demo/communication-part2/main" component={lazy(() => import('../page/browser-demo/communication-part2/main'))} />
+          <Route path="/demo/communication-part3/client" component={lazy(() => import('../page/browser-demo/communication-part3/client'))} />
+          <Route path="/demo/communication-part3/main" component={lazy(() => import('../page/browser-demo/communication-part3/main'))} />
+          <Route path="/demo/window-close" component={lazy(() => import('../page/browser-demo/window-close'))} />
+          <Route path="/demo/window-type" component={lazy(() => import('../page/browser-demo/demo-window-type'))} />
+          <Route path="/demo/full-screen" component={lazy(() => import('../page/browser-demo/full-screen'))} />
           <Route path="/editor" component={lazy(() => import('../page/editor'))} />
           <Route path="/download-manager/demo" component={lazy(() => import('../page/download-manager'))} />
           <Route path="/start" component={lazy(() => import('../page/start'))} />
@@ -48,4 +48,4 @@ export default function () {
   );
 }
 
-export const isolatedRoutes = ['/demo/communication-part1/client', '/demo/communication-part1/main', '/demo/communication-part2/client', '/demo/communication-part2/main', '/demo/communication-part3/client', '/demo/communication-part3/main', '/browser/demo/window-close', '/demo/window-type', '/demo/full-screen', '/editor', '/download-manager/demo', '/start', '/apidoc'];
+export const isolatedRoutes = ['/demo/communication-part1/client', '/demo/communication-part1/main', '/demo/communication-part2/client', '/demo/communication-part2/main', '/demo/communication-part3/client', '/demo/communication-part3/main', '/demo/window-close', '/demo/window-type', '/demo/full-screen', '/editor', '/download-manager/demo', '/start', '/apidoc'];
