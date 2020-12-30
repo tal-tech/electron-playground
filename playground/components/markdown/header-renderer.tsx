@@ -82,7 +82,7 @@ const AnchorRender = () => {
       </div>
 
       <Drawer title={null} placement='right' closable={false} mask={false} visible={show}>
-        <div onMouseLeave={() => setShow(false)}>
+        <div onMouseLeave={() => setShow(false)} style={{height:'100%'}}>
           <Anchor onClick={handleAnchor} bounds={0}>
             {TOC.map(({ content, level }) => (
               <div key={content} style={{ marginLeft: (level - 1) * 10 }}>
