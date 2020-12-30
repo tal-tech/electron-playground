@@ -18,7 +18,7 @@ const OPTIONS: Electron.BrowserWindowConstructorOptions = {
   }
 }
 
-const URL = `${PLAYGROUND_FILE_URL}#/`
+const URL = `${PLAYGROUND_FILE_URL}#/apidoc`
 
 export const createApiWindow: CreateWindowHandler = () => {
   const win = new BrowserWindow(OPTIONS)
