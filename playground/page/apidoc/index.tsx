@@ -3,6 +3,7 @@ import fs from 'fs'
 import path from 'path'
 import { Layout, Menu } from 'antd'
 import Markdown from 'components/markdown'
+import { EditFilled } from '@ant-design/icons'
 
 import style from './style.module.less'
 
@@ -44,12 +45,15 @@ if(process.env.NODE_ENV!=='production'){
 console.log(process.env)
 
 const Apidoc: React.FunctionComponent<IApidocProps> = props => {
+  const [markdownPath, setMarkdownPath] = useState('')
   const [content, setContent] = useState('')
 
   const handleMenuClick = (filePath: string) => {
-    import(`../../apidocs${  filePath.replace(apidoc_path,'')}`).then(res=> {
+    const relativePath = filePath.replace(apidoc_path,'')
+    import(`../../apidocs${relativePath}`).then(res=> {
       setContent('')
       setContent(res.default)
+      setMarkdownPath(relativePath)
     })
   }
 
@@ -80,6 +84,10 @@ const Apidoc: React.FunctionComponent<IApidocProps> = props => {
       <Layout className={style.main}>
         <Layout.Content className={style.content}>
           { content && <Markdown content={content}/> }
+          { content && <p className={style.edit}>
+            <EditFilled/> 对文档内容有不同意见？欢迎
+            <a href={`https://github.com/tal-tech/electron-playground/edit/master/playground/apidocs${markdownPath}`}>提供修改</a>
+          </p>  }
         </Layout.Content>
       </Layout>
     </Layout>
