@@ -4,9 +4,9 @@ import { message, Modal } from 'antd'
 import CreateModal from './create'
 import styles from './style.module.less'
 
-import DownloadManagerMenu from '../../components/manager-menu'
-import DownloadItem from '../../components/download-item'
-import { IDownloadFile } from '../../../../../../app/file-manager/interface'
+import DownloadManagerMenu from './components/manager-menu'
+import DownloadItem from './components/download-item'
+import { IDownloadFile } from '../../../app/file-manager/interface'
 import {
   clearDownloadDone,
   getDownloadData,
@@ -17,7 +17,7 @@ import {
   openFileInFolder,
   pauseOrResume,
   removeDownloadItem,
-} from '../../ipc-renderer'
+} from './ipc-renderer'
 
 const DownloadManager = () => {
   const [show, setShow] = useState(false)

@@ -39,6 +39,10 @@ const Markdown: React.FunctionComponent<IMarkdownProps> = props => {
           code: CodeRenderer,
           image: ImageRenderer,
           heading: HeadRenderer,
+          html: (...args)=>{ 
+            console.log(args)
+            return null
+          }
         }}
       />
       <AnchorRender />

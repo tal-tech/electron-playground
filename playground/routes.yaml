@@ -92,7 +92,7 @@
   path: editor
 
 - isolated: true
-  src: application/file-manager/download/demo
+  src: download-manager
   path: download-manager/demo
 
 - isolated: true

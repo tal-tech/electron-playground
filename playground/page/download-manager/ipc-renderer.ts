@@ -4,7 +4,7 @@ import {
   INewDownloadFile,
   IPagination,
   IPCEventName,
-} from '../../../../app/file-manager/interface'
+} from '../../../app/file-manager/interface'
 
 /**
  * 添加 ipc 调用监听事件
