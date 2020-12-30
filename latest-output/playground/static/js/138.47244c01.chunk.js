@@ -1,0 +1,1 @@
+(this["webpackJsonpelectron-playground"]=this["webpackJsonpelectron-playground"]||[]).push([[138],{1351:function(e,n,p){e.exports=p.p+"static/media/window-create.edec2c85.png"}}]);

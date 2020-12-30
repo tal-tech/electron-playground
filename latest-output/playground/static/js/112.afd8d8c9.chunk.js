@@ -1,0 +1,1 @@
+(this["webpackJsonpelectron-playground"]=this["webpackJsonpelectron-playground"]||[]).push([[112],{470:function(o,p,t){o.exports=t.p+"static/media/auto_update_workflow.97df57db.png"}}]);
