@@ -1,0 +1,30 @@
+@footerHeight: 36px;
+@mainMargin: 24px;
+
+.container {
+  height: 100vh;
+
+  .main {
+    margin: @mainMargin;
+    height: calc(100% - 2 * @mainMargin);
+  }
+
+  .content {
+    background-color: #fff;
+    border-radius: 4px;
+    padding: 24px;
+    overflow-y: auto;
+  }
+  .menu{
+    height: 100%;
+    padding-top: 20px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  .edit{
+    margin-top: 40px;
+    border-top: 1px dashed #999;
+    padding: 12px 0;
+  }
+}

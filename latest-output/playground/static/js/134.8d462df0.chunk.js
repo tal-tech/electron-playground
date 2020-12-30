@@ -1,0 +1,1 @@
+(this["webpackJsonpelectron-playground"]=this["webpackJsonpelectron-playground"]||[]).push([[134],{1332:function(n,p,e){n.exports=e.p+"static/media/win-menu.8aa87fb1.png"}}]);

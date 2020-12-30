@@ -1,0 +1,1 @@
+(this["webpackJsonpelectron-playground"]=this["webpackJsonpelectron-playground"]||[]).push([[128],{1328:function(o,p,t){o.exports=t.p+"static/media/protocolWatch.f9df387a.gif"}}]);

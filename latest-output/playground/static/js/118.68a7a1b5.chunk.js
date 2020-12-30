@@ -1,0 +1,1 @@
+(this["webpackJsonpelectron-playground"]=this["webpackJsonpelectron-playground"]||[]).push([[118],{1322:function(e,t,a){e.exports=a.p+"static/media/create-glimmer-tray.6a856e17.gif"}}]);

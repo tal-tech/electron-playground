@@ -1,0 +1,1 @@
+(this["webpackJsonpelectron-playground"]=this["webpackJsonpelectron-playground"]||[]).push([[130],{1329:function(t,e,p){t.exports=p.p+"static/media/set-tray-title.d8865f3c.png"}}]);
