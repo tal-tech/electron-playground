@@ -72,8 +72,6 @@ const Apidoc: React.FunctionComponent<IApidocProps> = props => {
     return <Menu.Item onClick={() => handleMenuClick(filePath as string)} key={filePath}>{title}</Menu.Item>
   }
   
-  console.log(content)
-
   return (
     <Layout className={style.container}>
       <Layout.Sider width={256}>
