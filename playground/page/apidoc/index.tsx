@@ -9,7 +9,7 @@ import style from './style.module.less'
 interface IApidocProps {}
 
 interface MenusInfo {
-  filePath?: string
+  filePath: string
   title: string
   children?: MenusInfo[]
 }
@@ -44,18 +44,19 @@ if(process.env.NODE_ENV!=='production'){
 console.log(process.env)
 
 const Apidoc: React.FunctionComponent<IApidocProps> = props => {
-  useEffect(() => {
-    console.log(menus)
-  }, [])
-
   const [content, setContent] = useState('')
 
-  const handleMarkdownClick = (filePath: string) => {
+  const handleMenuClick = (filePath: string) => {
     import(`../../apidocs${  filePath.replace(apidoc_path,'')}`).then(res=> {
       setContent('')
       setContent(res.default)
     })
   }
+
+  // 用于menu的子菜单展开
+  const defaultOpenKeys = useMemo(() => {
+    return menus.filter(m=>m.children?.length).map(i=>i.filePath)
+  }, [])
 
   const generateMenus = (menu: MenusInfo) => {
     const {filePath, title, children} = menu
@@ -64,7 +65,7 @@ const Apidoc: React.FunctionComponent<IApidocProps> = props => {
         {children.map((item,index) => generateMenus(item) )}
       </Menu.SubMenu> 
     }
-    return <Menu.Item onClick={() => handleMarkdownClick(filePath as string)} key={filePath}>{title}</Menu.Item>
+    return <Menu.Item onClick={() => handleMenuClick(filePath as string)} key={filePath}>{title}</Menu.Item>
   }
   
   console.log(content)
@@ -72,7 +73,7 @@ const Apidoc: React.FunctionComponent<IApidocProps> = props => {
   return (
     <Layout className={style.container}>
       <Layout.Sider width={256}>
-        <Menu mode="inline" className={style.menu}>
+        <Menu mode="inline" className={style.menu} defaultOpenKeys={defaultOpenKeys}>
           {menus.map(i=>generateMenus(i))}
         </Menu>
       </Layout.Sider>
