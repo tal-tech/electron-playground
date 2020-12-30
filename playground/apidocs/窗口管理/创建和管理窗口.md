@@ -172,7 +172,7 @@ __例子__：实现关闭窗口之前触发弹窗
 const { BrowserWindow } = require('electron');
 const path = require('path');
 const browserWindows = new BrowserWindow({webPreferences:{nodeIntegration: true,webSecurity: false}})
-browserWindows.loadURL('file:///' + path.resolve(__dirname, '../playground/index.html#/browser/demo/window-close'))
+browserWindows.loadURL('file:///' + path.resolve(__dirname, '../playground/index.html#/demo/window-close'))
 ```
 注：
 - 上面代码，只能应用于electron端，在web端刷新不起作用；web端无法在页面关闭或者刷新之前阻塞浏览器；

@@ -56,35 +56,35 @@
       src: others/security
 
 - isolated: true
-  src: browser/demo/communication-part1/client
+  src: browser-demo/communication-part1/client
   path: demo/communication-part1/client
 - isolated: true
-  src: browser/demo/communication-part1/main
+  src: browser-demo/communication-part1/main
   path: demo/communication-part1/main
 - isolated: true
-  src: browser/demo/communication-part2/client
+  src: browser-demo/communication-part2/client
   path: demo/communication-part2/client
 - isolated: true
-  src: browser/demo/communication-part2/main
+  src: browser-demo/communication-part2/main
   path: demo/communication-part2/main
 - isolated: true
-  src: browser/demo/communication-part3/client
+  src: browser-demo/communication-part3/client
   path: demo/communication-part3/client
 - isolated: true
-  src: browser/demo/communication-part3/main
+  src: browser-demo/communication-part3/main
   path: demo/communication-part3/main
 
 
 - isolated: true
-  src: browser/demo/window-close
-  path: browser/demo/window-close
+  src: browser-demo/window-close
+  path: demo/window-close
 
 - isolated: true
-  src: browser/demo/demo-window-type
+  src: browser-demo/demo-window-type
   path: demo/window-type
 
 - isolated: true
-  src: browser/demo/full-screen
+  src: browser-demo/full-screen
   path: demo/full-screen
 
 - isolated: true
