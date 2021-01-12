@@ -70,9 +70,8 @@ yarn start
 
 当然如果有问题，可以加下面微信，有时间我们会第一时间回复。
 
-<img src="https://pro-image.xiaoheiban.cn/202101/1d8fd083-5fd9-44d1-a76a-120682f56144.jpg?x-oss-process=image/resize,w_700" width="300px">
+<img width='360px' src='./resources/readme/wechat-group.svg' />
 
 因为国内网络原因，图片可能无法加载，可以微信搜索**”晓前端“**，关注公众号**“晓前端”**，输入“ele”或者“electron”，也能自动获取群图片。
 
 有一个公众号叫“晓前端团队”，这个不是**我们的公众号**，我们公众号就是**晓前端**
-
