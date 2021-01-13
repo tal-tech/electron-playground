@@ -1,0 +1,60 @@
+body {
+  margin: 0;
+}
+#app {
+  height: 100vh;
+  max-height: 100vh;
+  overflow: auto;
+  overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  color: #333;
+}
+.main-class {
+  background: #23241e;
+  color: #929292;
+  flex: 1;
+  padding: 10px 20px 0 10px;
+}
+.command-action {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.command-action-icon {
+  line-height: 16px;
+  display: inline-block;
+  color: #88e200;
+}
+.error-icon {
+  color: #ff0066;
+}
+.command-action-path {
+  color: #21c5dc;
+  margin: 0 5px 0 8px;
+  display: inline-block;
+}
+.command-action-input {
+  border: none;
+  outline: none;
+  color: #b2b2b2;
+  background: #23241e;
+}
+.command-action-contenteditable {
+  border: none;
+  outline: none;
+  background: #23241e;
+  min-width: 100px;
+  white-space: pre-wrap;
+  color: #b2b2b2;
+}
+.output-command {
+  margin: 10px 10px 10px 0;
+  white-space: pre-wrap;
+}
+
+.command-action-editor {
+  padding: 10px 0 20px 0;
+}
