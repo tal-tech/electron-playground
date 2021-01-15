@@ -1,1 +1,0 @@
-(this["webpackJsonpelectron-playground"]=this["webpackJsonpelectron-playground"]||[]).push([[141],{1354:function(e,p,n){e.exports=n.p+"static/media/window-type-frame2.093eb7db.gif"}}]);

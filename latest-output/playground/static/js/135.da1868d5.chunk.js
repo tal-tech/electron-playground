@@ -1,1 +1,0 @@
-(this["webpackJsonpelectron-playground"]=this["webpackJsonpelectron-playground"]||[]).push([[135],{481:function(p,e,n){p.exports=n.p+"static/media/windows_progress.15688fe1.png"}}]);

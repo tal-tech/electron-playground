@@ -1,1 +1,0 @@
-(this["webpackJsonpelectron-playground"]=this["webpackJsonpelectron-playground"]||[]).push([[113],{471:function(e,n,p){e.exports=p.p+"static/media/debug_main_process_in_webstorm.c7c88d35.png"}}]);

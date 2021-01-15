@@ -1,1 +1,0 @@
-(this["webpackJsonpelectron-playground"]=this["webpackJsonpelectron-playground"]||[]).push([[127],{478:function(o,p,n){o.exports=n.p+"static/media/mac_download_progress.7f0cbbad.png"}}]);

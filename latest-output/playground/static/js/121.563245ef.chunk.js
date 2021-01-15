@@ -1,1 +1,0 @@
-(this["webpackJsonpelectron-playground"]=this["webpackJsonpelectron-playground"]||[]).push([[121],{1325:function(e,t,p){e.exports=p.p+"static/media/create-tray.50c09db0.gif"}}]);

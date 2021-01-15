@@ -1,1 +1,0 @@
-(this["webpackJsonpelectron-playground"]=this["webpackJsonpelectron-playground"]||[]).push([[114],{472:function(n,p,e){n.exports=e.p+"static/media/inspect_main_process_in_chrome.13772d93.png"}}]);

@@ -1,1 +1,0 @@
-(this["webpackJsonpelectron-playground"]=this["webpackJsonpelectron-playground"]||[]).push([[132],{480:function(e,p,n){e.exports=n.p+"static/media/updated_event.81e36068.png"}}]);

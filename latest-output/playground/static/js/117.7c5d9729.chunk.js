@@ -1,1 +1,0 @@
-(this["webpackJsonpelectron-playground"]=this["webpackJsonpelectron-playground"]||[]).push([[117],{1321:function(e,t,n){e.exports=n.p+"static/media/create-context-menu.bd7f6e7d.gif"}}]);

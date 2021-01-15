@@ -1,1 +1,0 @@
-(this["webpackJsonpelectron-playground"]=this["webpackJsonpelectron-playground"]||[]).push([[126],{1327:function(n,p,e){n.exports=e.p+"static/media/mac-menu.14194053.png"}}]);
