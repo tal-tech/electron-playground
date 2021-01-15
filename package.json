@@ -15,7 +15,7 @@
     "serverPort": "2333"
   },
   "scripts": {
-    "start": "ts-node ./build/quick-start.ts && electron .",
+    "start": "npm run build && electron .",
     "clean": "rimraf dist/**",
     "dev": "npm run clean && cross-env NODE_ENV=development concurrently \"npm run dev:main\" \"npm run dev:preload\" \"npm run dev:playground\"",
     "dev:main": "webpack --config ./build/webpack.config.main.dev.js --watch",
