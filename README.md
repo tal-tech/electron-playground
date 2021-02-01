@@ -70,7 +70,7 @@ yarn start
 
 当然如果有问题，可以加下面微信，有时间我们会第一时间回复。
 
-<img width='360px' src='./resources/readme/wechat-group.svg' />
+<img width='360px' src='https://yach-static.zhiyinlou.com/online/person/1612166250352/5366DF6EA4FF1135F804456C893D4CC3/EAC1B703-0133-4927-8FBB-C811C6F5ADB4.jpg?imageMogr2/ignore-error/1/format/webp' />
 
 因为国内网络原因，图片可能无法加载，可以微信搜索**”晓前端“**，关注公众号**“晓前端”**，输入“ele”或者“electron”，也能自动获取群图片。
 
